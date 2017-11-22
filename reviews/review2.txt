@@ -1,0 +1,58 @@
+============================================================================
+                            REVIEWER #2
+============================================================================
+
+
+---------------------------------------------------------------------------
+Reviewer's Scores
+---------------------------------------------------------------------------
+
+                 Originality & relevance: incremental
+                     Technical soundness: sound
+                      Relevance to ASYNC: highly relevant
+                            Presentation: sufficient
+                     Reviewer confidence: high
+                          Recommendation: accept
+
+
+---------------------------------------------------------------------------
+Summary
+---------------------------------------------------------------------------
+
+This work describes a method for verifying asynchronous, or mixed sync-async circuits using synchronous circuit verification tools.
+
+---------------------------------------------------------------------------
+Strengths
+---------------------------------------------------------------------------
+
+It is interesting and valuable to know that this is indeed a possible path, particularly for industry, which may look to expand to using small async. circuits here and there.
+
+---------------------------------------------------------------------------
+Weaknesses
+---------------------------------------------------------------------------
+
+The level of automation is the main concern, and must be addressed, not the transformation to synchronous, but the creation of the four verification models, i.e. spec compliance, deadlock freeness, output persistency and non-deterministic choice.
+
+---------------------------------------------------------------------------
+Comments
+---------------------------------------------------------------------------
+
+The use of synchronous tools for asynchronous circuits is a highly valuable
+idea, as it builds confidence for industry. Therefore, I find the motivation
+behind this work very strong. Thus, focus on automation is paramount.
+
+What should be elaborated further in this work is thus the effort for
+performing the four verification checks, and if this is higher than it would
+require for synchronous circuits. It is expected that the user will have to
+create these models on a circuit by circuit basis? This is the impression that
+comes out of the text. Is this the same for synchronous circuit being verified?
+Another issue is the exponential size of of the state graph required for
+verification. Is there any way around it? What is the size of circuits which
+can be handled at a time?
+
+Tool Xprova is mentioned, but its results are never shown. Please remove it, or
+reduce its importance, mentioning in the text.
+
+The authors do not elaborate enough on their custom tool, is this a custom
+synchronous, discrete time, formal tool looking at the state graph... some more
+detail would help.

@@ -1,0 +1,261 @@
+@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700i');
+@import url('https://fonts.googleapis.com/css?family=Rambla');
+
+body {
+    font-family: 'Nunito';
+    line-height: 180%;
+}
+
+.grayscale {
+  filter: gray; /* IE6-9 */
+  -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+  filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
+  opacity: 0.25;
+  filter: alpha(opacity=25); /* For IE8 and earlier */
+}
+
+.circle {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.active {
+    background-color: #2196F3;
+  /*  width: 60px;
+    height: 60px;
+    margin-left: -10px;
+    line-height: 60px;*/
+}
+
+.inactive {
+    background-color: #cccccc;
+}
+
+.gray1 {
+    color: #cccccc;
+}
+
+.vruler {
+    width: 5px;
+    margin: -10px;
+    margin-left: 17.5px;
+    margin-right: 17.5px;
+    height: 50px;
+    display: block;
+}
+
+.big {
+    font-size: 18pt;
+    font-family: 'Rambla';
+}
+
+.footer {
+    position: absolute;
+    bottom: 10pt;
+    font-size: small;
+    width: 100%;
+    left: 0pt;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.venue {
+    font-style: italic;
+}
+
+.spacer {
+    visibility: hidden;
+}
+
+h1, h2, h3 {
+    /*font-family: 'Yanone Kaffeesatz';*/
+    font-family: 'Rambla';
+    /*font-family: 'Nunito';*/
+    font-weight: normal;
+}
+
+.remark-slide-content h1{
+    font-size: 36pt;
+    border-bottom: solid 1pt #cccccc;
+    margin-bottom: 20pt;
+    padding-bottom: 18pt;
+}
+
+.remark-slide-content h2 {
+    font-size: 30pt;
+    border-bottom: solid 1pt #cccccc;
+    margin-bottom: 20pt;
+    padding-bottom: 12pt;
+}
+
+.check {
+    color: #00bb00;
+    background-image: url("../icons/check.svg");
+    padding-left: 25pt;
+    margin: 5pt;
+    background-repeat: no-repeat;
+    display: block;
+    margin-top: 10pt;
+    /*margin-bottom: 30pt;*/
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.fig_module {
+    width: 80%;
+    border: solid 1pt #cccccc;
+    padding: 20pt;
+    margin: 10pt;
+}
+
+
+img.big {
+    width: 60%;
+    border: solid 1pt #cccccc;
+    padding: 10pt;
+    margin: 10pt;
+}
+
+.sep {
+    width: 100%;
+    margin: -5pt;
+    display: block;
+    border-bottom: solid 1pt #eeeeee;
+}
+
+.definition {
+    color: rgb(249, 38, 114);
+    font-style: italic;
+}
+
+.emph {
+    /*color: rgb(249, 38, 114);*/
+    font-style: italic;
+    font-weight: bold;
+}
+
+.red {
+    color: #fa0000;
+}
+
+.underlined {
+    border-bottom: dashed 1pt;
+}
+
+.underlined-red {
+    border-bottom: dashed 1pt red;
+}
+
+.blue {
+    color: #00b0f0;
+}
+
+/*.remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }*/
+
+#logos img {
+    width: 27.5%;
+    /*height: 60pt;*/
+    margin: 15pt;
+    margin-top: 5pt;
+}
+
+.equation {
+    padding: 10px;
+    vertical-align: middle;
+    -webkit-transform: scale(1.25); /* Saf3.1+, Chrome */
+    -moz-transform: scale(1.25); /* FF3.5+ */
+    -ms-transform: scale(1.25); /* IE9 */
+    -o-transform: scale(1.25); /* Opera 10.5+ */
+    transform: scale(1.25);
+
+}
+
+.code, code.remark-inline-code {
+    font-family: monospace;
+    background: #eeeeee;
+    border: solid 1px #dddddd;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.code2 {
+    font-family: monospace;
+    background: #E3F2FD;
+    border: solid 1px #BBDEFB;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+
+.tab1 {
+    border: solid 1px #dddddd;
+    width: 100%;
+    padding: 10pt;
+}
+
+ol li {
+    margin-bottom: 15pt;
+}
+
+.footnote {
+    font-size: 12pt;
+    position: absolute;
+    bottom: 50pt;
+    width: 80%;
+}
+
+.results {
+    border: solid 1pt #dddddd;
+    width: 80%;
+    height: 100pt;
+    padding: 0pt;
+}
+
+.results td {
+    text-align: center;
+    border-bottom: solid 1pt #dddddd;
+}
+
+a {
+    text-decoration: none;
+    /*border-bottom: solid 1px #2196F3;*/
+    color: #2196F3;
+}
+
+.code {
+    font-family: monospace;
+    background: #eeeeee;
+    border: solid 1px #dddddd;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 0.75em;
+}
+
+.code2 {
+    font-family: monospace;
+    background: #E3F2FD;
+    border: solid 1px #BBDEFB;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+code {
+    line-height: 150%;
+}
+
+.remark-code {
+    font-size: 0.8em;
+}
+
+.green {
+    color: #00bb00;
+}

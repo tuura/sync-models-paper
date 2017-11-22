@@ -1,0 +1,86 @@
+============================================================================
+                            REVIEWER #3
+============================================================================
+
+
+---------------------------------------------------------------------------
+Reviewer's Scores
+---------------------------------------------------------------------------
+
+                 Originality & relevance: new
+                     Technical soundness: sound
+                      Relevance to ASYNC: highly relevant
+                            Presentation: good
+                     Reviewer confidence: high
+                          Recommendation: weak reject
+
+
+---------------------------------------------------------------------------
+Summary
+---------------------------------------------------------------------------
+
+The paper targets the verification of mixed synchronous-asynchronous circuits by means of standard synchronous verification tools.
+
+---------------------------------------------------------------------------
+Strengths
+---------------------------------------------------------------------------
+
+Reuse of verification tools for
+synchronous logic also for the formal verifcation of asynchronous circuits
+
+---------------------------------------------------------------------------
+Weaknesses
+---------------------------------------------------------------------------
+
+This is fundamentally a paper with negative results. This is not a problem per se, but in this specific case shows that the approach lacks of maturity.
+
+---------------------------------------------------------------------------
+Comments
+---------------------------------------------------------------------------
+
+The paper shoots in the right direction: reuse of verification tools for
+synchronous logic also for the formal verifcation of asynchronous circuits.
+Authors essentially propose a multiframe modeling (qualitative, since time is
+never quantified, so that for instance applicability to a mousetrap pipeline is
+questionable) of asynchronous networks. THe idea is smart, since instead of
+doing an ad-hoc model in some language, authors change the asynchronous network
+into a synchronous one and can use commercial tools to process the
+synch-asynch. mix in a very elegant way.
+Unfortunately, it is clear from the ground up, and later confirmed by
+experimental evidence, that this approach incurs a huge overhead (essentially,
+gate-level insertion of flops), and applicability is going to be limited to
+overly small circuits.
+
+Other comments:
+
+- the proposed test circuits are rather small. What about a final test case
+with a more realistic and/or complete circuit?
+
+- the verification part of an asynchronous arbiter has been addressed a bit
+superficially. In fact, verying an asynchronous arbiter is not an easy task. In
+particular, there may be the possibility of having two grants active
+concurrently for some (small) time, which is called grant overlapping. THis
+depends on actual gate delays inside arbiters. Moreover, other arbiter
+properties could be checked, for instance: having an output for each input
+transition, etc.
+
+- among the verified propeties, I was not able to find any reference to the
+mutual exclusion property,which is common in asynchronous design.
+
+- what about the state space explostion issue? Do you take any countermeasure
+against it? Authors are a bit overlooking the computational complexity of the
+approach. They also compare their results with those achieved with a custom
+software (ESSET, which performs exhaustive state space exploration and is thus
+potentially very computation-sensitive). Authors seem to ignore some
+dependencies which would help reduce the state space to explore, however this
+is consistent with the idea of using commercial tools.
+
+- The authors' conclusion is not totally consistent: "while there are
+performance penalties, there is still significant value in enabling users to
+verify asynchronous circuits using tools that may be more familiar." The overly
+limited applicability of the approach is given by the overhead, which seems  a
+real roadblock here.
+
+- experimental results should be expanded. The network with the counters and
+with the C-elements has 8,9 and 10 status elements, and with  3 points it is
+not possible to really assess the scalability of these techniques.

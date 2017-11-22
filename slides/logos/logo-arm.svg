@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="14.335722cm"
+   height="5.9807cm"
+   viewBox="110.7266 72.2266 2031.837 847.66067"
+   version="1.0"
+   id="svg2"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="ARM_Logo.svg">
+  <metadata
+     id="metadata22">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs20" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1138"
+     id="namedview18"
+     showgrid="false"
+     fit-margin-top="1"
+     fit-margin-left="1"
+     fit-margin-right="1"
+     fit-margin-bottom="1"
+     inkscape:zoom="1.2811672"
+     inkscape:cx="66.548884"
+     inkscape:cy="49.680041"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <desc
+     id="desc4">
+  Exported by the ArtWorks SVGExport module.
+  Source document: Mem::Memphis.$.Untitled1
+</desc>
+  <g
+     transform="matrix(1,0,0,-1,141.73128,850.38118)"
+     stroke-miterlimit="16"
+     id="g6"
+     style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:16">
+    <g
+       id="g8">
+      <g
+         id="g10">
+        <path
+           d="m 728.375,72.2266 -145.9531,0 -44.5781,111.7968 -243.2735,0 -40.539,-111.7968 -143.3047,0 219.0859,564.1953 157.0703,0 L 728.375,72.2266 Z M 410.1797,501.75 330.5078,282.6719 l 167.5,0 -87.8281,219.0781 z"
+           id="path12"
+           inkscape:connector-curvature="0"
+           style="fill:#118cab;fill-rule:nonzero" />
+        <path
+           d="m 1002.9219,636.4219 c 111.5703,0 177.6953,-77.4141 177.6953,-161.8203 0,-62.0078 -31.0391,-108.6094 -93.2813,-138.25 55.7032,-29.0235 72.6641,-98.4922 149.1407,-264.125 l -149.1407,0 C 1028.9844,193.2813 1007.6719,301.5 934.1484,301.5 l -38.9765,0 0,-229.2734 -135.5235,0 0,564.1953 243.2735,0 z m -107.75,-231.2969 71.9687,0 c 37.3438,0 74.0625,16.3359 74.0625,64.4922 0,42.0937 -26.2968,63.6406 -77.414,63.6406 l -68.6172,0 0,-128.1328 z"
+           id="path14"
+           inkscape:connector-curvature="0"
+           style="fill:#118cab;fill-rule:nonzero" />
+        <path
+           d="m 1741,636.4219 118.1016,0 0,-564.1953 -135.5235,0 0,352.5781 -146.5,-176.9922 -21,0 -146.6562,176.9922 0,-352.5781 -135.6016,0 0,564.1953 117.9453,0 174.7344,-209.125 174.5,209.125 z"
+           id="path16"
+           inkscape:connector-curvature="0"
+           style="fill:#118cab;fill-rule:nonzero" />
+      </g>
+    </g>
+  </g>
+</svg>

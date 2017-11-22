@@ -1,0 +1,18 @@
+{
+    "folders": [
+        {
+            "path": ".",
+            "folder_exclude_patterns": [
+                "build",
+                "figure-sources",
+                "figures",
+                "old",
+                "visio"
+            ],
+            "file_exclude_patterns": [
+                "*.xlsx"
+            ]
+        }
+    ],
+    "settings": {}
+}

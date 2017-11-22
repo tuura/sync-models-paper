@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<title>Formal Verification of Mixed Synchronous Asynchronous Systems using Industrial Tools</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<style type="text/css">
+
+		.subslide {
+			color: rgba(0,0,0,0.2);
+			vertical-align: bottom;
+			margin-left: 10px;
+			font-size: 0.8em;
+		}
+
+		/* TODO: Figure out the best way to create custom versions of the template */
+		body > div.remark-slides-area > div.remark-slide-container.remark-visible > div.remark-slide-scaler > div > div {
+			padding-left: 50px !important;
+			padding-right: 50px !important;
+		}
+
+		#logos {
+			text-align: center;
+		}
+
+		#logos img {
+			width: 25% !important;
+		}
+
+		ul > li > ol > li {
+			line-height: 120%;
+		}
+
+	</style>
+  </head>
+  <body>
+	<textarea id="source">
+
+class: center, middle
+
+<h1 style="font-size: 42px; line-height: 125%; margin-top: 180px;">
+Formal Verification of Mixed Synchronous Asynchronous Systems using Industrial Tools
+</h1>
+
+Ghaith Tarawneh and Andrey Mokhov.red[ * ]
+
+Newcastle University, UK
+<br>
+<br>
+<!-- Note: format 'Date' below as 1<sup>st</sup> Month Year -->
+
+.venue[ASYNC 2018 - Vienna, 15<sup>th</sup> May 2018]
+
+<img src="logos/logo-epsrc.svg" style="width: 200pt; position: absolute; top: 40pt; left: 40pt;"/>
+<img src="logos/logo-poets-underlined.svg" style="width: 220pt; position: absolute; top: 5pt; right: 40pt;"/>
+
+---
+
+layout: true
+
+<img src="logos/logo-poets.svg" class="grayscale" style="width: 120pt; position: absolute; top: 16pt; right: 40pt;"/>
+
+.footer.venue[ASYNC 2018 - Vienna, 15<sup>th</sup> May 2018]
+
+---
+
+## POETS Project Team
+
+<div id="logos">
+<img src="logos/logo-cambridge.svg"/>
+<img src="logos/logo-arm.svg"/>
+<img src="logos/logo-ccfe.jpg"/>
+<img src="logos/logo-imperial.svg"/>
+<img src="logos/logo-etx.jpg"/>
+<img src="logos/logo-cuhk.svg"/>
+<img src="logos/logo-newcastle.svg"/>
+<img src="logos/logo-img.jpg"/>
+<img src="logos/logo-maxeler.svg"/>
+<img src="logos/logo-southampton.svg"/>
+<img src="logos/logo-nmi.png"/>
+<img src="logos/logo-nag.svg"/>
+</div>
+
+<!-- ---
+
+## Outline
+
+.active.circle[1] .big[Introduction]
+.active.vruler[ ]
+.active.circle[2] .big[Proposed Solution]
+.active.vruler[ ]
+.active.circle[3] .big[Use Case Example]
+.active.vruler[ ]
+.active.circle[4] .big[Benchmarks]
+.active.vruler[ ]
+.active.circle[5] .big[Conclusion] -->
+
+<!-- ---
+
+class: center, middle
+
+# Problem -->
+
+---
+
+## Problem .subslide[(1/3)]
+
+<style type="text/css">
+	box, hidden-box {
+		background-color: #FFCDD2;
+		border-radius: 10px;
+		border: solid 2px #EF9A9A;
+		display: block;
+		padding: 10px;
+	}
+	hidden-box {
+		visibility: hidden;
+	}
+</style>
+
+- *Software tool support* and *learning effort* are among the main
+challenges for the wider adoption of asynchronous design in industry.
+
+- *Two practical questions* confront industrial users wishing to verify
+async circuits:
+
+	1. Can we use familiar sync tools to verify async circuits?
+
+	2. What about system-level verification of mixed sync-async systems?
+
+---
+
+<style type="text/css">
+	.quotebox::before,
+	.quotebox::after
+	{
+		color: #888;
+		font-size: 2.0em;
+		position: relative;
+		top: 8px;
+		padding: 5px;
+	}
+
+	.quotebox::before {
+		content: "“";
+
+	}
+	.quotebox::after {
+		content: "”";
+	}
+	.quotebox{
+		background: #eee;
+		border: solid 2px #ddd;
+		border-radius: 10px;
+		padding: 15px;
+		margin-bottom: 20px;
+		display: block;
+	}
+</style>
+
+## Problem .subslide[(2/3)]
+
+*1. Can we use familiar sync tools to verify async circuits?*
+
+- The answer is usually *No*: industrial users must learn and use async tools.
+
+- Async tools are a *better fit* for async design, but industrial users are also
+concerned with *learning effort* and *integration with existing design flows*...
+
+- ...as well as retaining familiar design ideas and notions:
+
+.shiftright.quotebox[To debug you need to stop the clock &mdash; how do you do that with async?]
+
+- Good ideas that are difficult to learn or apply do not appeal to industrial
+users.
+
+---
+
+## Problem .subslide[(3/3)]
+
+*2. What about system-level verification of mixed sync-async systems?*
+
+<!-- - Again, no, the sync and async parts must be verified in isolation using dedicated tools. -->
+
+<center>
+	<img src="figures/fig_system_verification.svg" style="width: 70%;"/>
+</center>
+
+<!-- ---
+
+class: center, middle
+
+# Proposed Solution -->
+
+---
+
+## Proposed Solution
+
+<center>
+	<img src="figures/fig_idea.svg" style="width: 60%; margin-top: -10px; margin-bottom: -15px;" />
+</center>
+
+- We propose a *zero-configuration push-button tool to transform gate-level
+async circuits into clocked circuits* that can be verified and debugged using
+sync tools.
+
+- The proposed tool may be suboptimal in some respects (e.g. performance) but
+requires *minimal learning effort* and is *compatible with standard sync design
+flows*.
+
+- The tool is targeted at *small async controllers embedded in sync systems*:
+
+.shiftright.quotebox[The async controller can be tiny, yet still useful!]
+
+---
+
+## How It Works .subslide[(1/3)]
+
+.emph[Transforming an async circuit into a clocked equivalent]
+
+<center>
+	<img src="figures/fig_transformation.svg" style="width: 100%; margin-top: -10px;"/>
+</center>
+
+1. Insert flip-flops to capture wire states and enable them one at a time.
+
+2. Stateful gates (e.g. C-elements) are replaced with models that have enable pins.
+
+---
+
+## How It Works .subslide[(2/3)]
+
+.emph[Exploring the circuit's state space]
+
+- When the model is simulated, the enable signal vector `en` can be used to
+control transition ordering..red[ * ]
+
+- We can also declare `en` as an unconstrained net and leave it to verification
+tools to explore all its possible traces and the resulting circuit behavior.
+
+.footnote[
+	.red[ * ] Similar ideas were proposed by Dobkin et al. 2008 and Roncken et al. 2015.
+]
+
+---
+
+## How It Works .subslide[(3/3)]
+
+.emph[Verification flow]
+
+<center>
+	<img src="figures/fig_using_transformed_circuits.svg" style="width: 100%;"/>
+</center>
+
+- The created sync model can be used to verify the circuit in isolation or in a system.
+
+<!-- - It can also be combined with other sync components to perform system-level
+verification using (sync) verification tools. -->
+
+---
+
+## Automation
+
+<style type="text/css">
+	.small {
+		font-size: 0.8em;
+	}
+</style>
+
+- We developed an open-source tool.red[ * ] to apply the transformation and
+automate other aspects of the proposed method (e.g. property generation).
+
+- Each (sync) circuit generated by the tool:
+
+	1. Has the same interface as the input async circuit (plus .small[`clk`] and
+	.small[`reset`] pins);
+	2. Precisely captures the behavior of the input async circuit.
+
+<center>
+	<img src="figures/fig_tool.svg" style="width: 90%;">
+</center>
+
+.footnote[
+	.red[ * ] Tool available at https://github.com/tuura/sync-models
+]
+
+---
+
+## Property Encoding
+
+- The tool generates standard properties in SVA language to check circuit
+behavior:
+
+	1. Hazard freedom;
+	2. Deadlock freedom.
+
+- Users also provide functional properties that describe the intended behaviour
+of the system at a high-level. Deviations caused by either sync or async parts
+of the system will then be discovered and debugged by standard formal
+verification tools.
+
+- *Optional:* The tool can also generate properties for spec compliance that can
+be used if you want to get fancy and provide a formal specification for the
+async part.
+
+---
+
+## Hazard Freedom (Output Persistency)
+
+- An internal or output signal .small[`x`] is persistent iff, once its
+transition is enabled, the transition either fires or continues to be enabled.
+
+.shiftright[
+
+```verilog
+wire x_enabled = x_p ^ x;
+
+persistency_x: assert property ( @(posedge clk) disable iff (rst)
+	$fell(x_enabled) |-> $changed(x)
+);
+
+```
+
+which in natural language is:
+
+If the transition of .small[`x`] was enabled but is no longer so, .small[`x`] must have fired.
+
+]
+
+---
+
+## Deadlock Freedom
+
+- A circuit is deadlock free when at least one transition is enabled on each
+cycle.
+
+.shiftright[
+
+We encode this as follows:
+
+```verilog
+wire x_enabled = x_p ^ x;
+wire y_enabled = y_p ^ y;
+wire z_enabled = z_p ^ z;
+
+wire exist_enabled_transition = x_enabled | y_enabled | z_enabled;
+
+deadlock_free: assert property ( @(posedge clk) disable iff (rst)
+	exist_enabled_transition
+);
+```
+]
+
+---
+
+## Spec Compliance (Optional)
+
+<style type="text/css">
+	.shiftright {
+    	margin-left: 40px;
+	}
+</style>
+
+- To check spec compliance, we encode the circuit spec as an FSM and include it
+with the generated circuit.
+
+- The spec FSM is simulated in tandem with the circuit and used to detect
+non-compliant transitions.
+
+.shiftright[
+
+Example (checks that falling transitions of signal .small[`x`] occur only in states
+.small[`1`], .small[`4`] or .small[`8`]):
+
+```verilog
+reg state; // state variable of spec FSM
+
+always @(posedge clk or posedge rst) begin
+	// state transition logic
+end
+
+wire x_can_fall = (state == 1) | (state == 4) | (state == 8);
+
+x_fall_compliant: assert property ( @(posedge clk) disable iff (rst)
+    $fell(x) |-> $past(x_can_fall)
+);
+```
+
+]
+
+---
+
+class: center, middle
+
+# Example
+
+---
+
+## Overview .subslide[(1/2)]
+
+We consider the system shown below, where three CPUs use a shared bus to
+communicate with a memory module. An async circuit arbitrates bus access.
+
+<center>
+	<img src="figures/fig_system.svg" style="width: 50%;" />
+</center>
+
+---
+
+## Overview .subslide[(2/2)]
+
+- In this system, *no more than 2 CPUs can be active at a time*.
+
+- We used a flat arbiter implementation (below) that is simpler than others
+but *deadlocks if three requests arrive at the same time*.
+
+- Since only 2 CPUs can be active, we expect that the system is *deadlock free*.
+
+<center>
+	<img src="figures/fig_arbiter.svg" style="width: 55%; margin-top: -15px;" />
+</center>
+
+---
+
+## Assertions
+
+- We used system-level verification to prove three assertions:
+
+.shiftright.squeeze[
+
+`P1` : The system is hazard free.
+
+`P2` : The system is deadlock free.
+
+`P3` : No more than a single CPU can be granted bus access at any time.
+
+]
+
+<style type="text/css">
+.squeeze p {
+        margin: 2px;
+    }
+</style>
+
+- Assertions `P1` and `P2` are generated automatically by our tool.
+
+- Assertion `P3` is a system-level property which is written by hand:
+
+.shiftright[
+
+```verilog
+wire use1 = r1 & g1; // CPU 1 is using the bus
+wire use2 = r2 & g2; // CPU 2 is using the bus
+wire use3 = r3 & g3; // CPU 3 is using the bus
+
+no_bus_access_conflict: assert property ( @(posedge clk1 or posedge clk2 or
+	posedge clk3 or posedge clk_async) disable iff (reset)
+		$onehot0({use1, use2, use3}) // only one CPU uses the bus at a time
+);
+```
+
+]
+
+---
+
+## Verification Flow
+
+- We used the following flow to verify this system.
+
+<center>
+	<img src="figures/fig_mixed_flow.svg" style="width: 55%;" />
+</center>
+
+---
+
+## Outcomes
+
+- All assertions `P1`, `P2` and `P3` received a .emph.green[PASS] verdict.
+
+.shiftright.squeeze[
+
+`P1` : The system is hazard free.
+
+`P2` : The system is deadlock free.
+
+`P3` : No more than a single CPU can be granted bus access at any time.
+
+]
+
+
+#### Experiment:
+
+- We modified the power management unit to allow all three CPUs to be active
+at the same time.
+
+- In line with what we expected, the formal tool discovered a
+deadlock and generated a counter-example for assertion `P2`.
+
+---
+
+## Benefits
+
+<style type="text/css">
+	.glue {
+		display: inline-block;
+	}
+</style>
+
+This use case example demonstrates two points.
+
+1. We are able to perform system-level verification of a mixed sync-async
+system using formal tools for synchronous logic.
+
+2. System-level verification can be used to prove or disprove properties that
+cannot be verified at the level of individual components without making
+unverified environmental assumptions.
+
+.shiftright[
+
+In this use case, we proved that the arbiter does not enter a deadlock state by
+verifying it against other modules directly. If we verified the sync and async
+parts separately, we would have had to create an accurate formal model of the
+power management unit – .glue[a very] non-trivial task!
+
+]
+
+<!-- ---
+
+class: center, middle
+
+# Benchmarks -->
+
+---
+
+## Performance
+
+<style type="text/css">
+	.mpsat {
+		font-variant: small-caps;
+	}
+</style>
+
+- Our use case example was verified in *less than 2 minutes* using an
+industrial formal verification tool (we refer to it as IND_TOOL).
+
+- How does cost scale with circuit type and size? To answer this we measured
+verification times for three types of synthetic benchmarks:
+
+	1. Async counters
+	2. C-elements
+	3. Ring oscillators
+
+- We compared verification time across three tools:
+
+	1. IND_TOOL (industrial, sync)
+	2. MPSAT (academic, async, uses STG unfoldings by
+	Khomenko et al. 2006)
+	3. ESSET (academic, async, uses exhaustive state enumeration)
+
+---
+
+## Benchmark Results .subslide[(1/2)]
+
+<center>
+	<img src="figures/tab_benchmarks.svg" style="width: 95%; background-color: #fafafa;" />
+</center>
+
+.shiftright[where .small[`N`] is the number of cascaded stages.]
+
+---
+
+## Benchmark Results .subslide[(2/2)]
+
+- Different tools use different verification approaches (exhaustive
+enumeration vs. unfolding) which have different performance characteristics.
+
+- This makes it *difficult to perform a head-to-head comparison* and establish the
+overhead of verifying async circuits using sync tools.
+
+- In general, there is a *significant performance overhead* compared to async
+verification tools (since the latter are very well adapted to the job).
+
+- Nevertheless, *we can still verify sizable mixed sync-async systems* where the
+async part is relatively small.
+
+---
+
+## Conclusion
+
+- We presented a transformation and a set of property encodings to convert
+async circuits into sync equivalents that can be passed to (sync) formal
+verification tools.
+
+- We demonstrated the practicality of the approach by using it to verify
+system-level properties of a mixed sync-async system.
+
+- Benchmark results reveal a considerable performance overhead.
+
+- However, we can still verify fairly complex systems in reasonable time (e.g. minutes).
+
+- The real value of our proposal is that it enables industrial users to verify
+async circuits within larger sync systems using existing tools and knowledge.
+
+- The tool is available at [https://github.com/tuura/sync-models](https://github.com/tuura/sync-models).
+
+	</textarea>
+	<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+	</script>
+	<script>
+	  var slideshow = remark.create({ratio: '4:3', highlightStyle: 'atom-one-light'});
+	</script>
+  </body>
+</html>
+

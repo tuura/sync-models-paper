@@ -1,0 +1,20 @@
+#!/bin/bash
+
+alias server="browser-sync start --server --index index.htm --config bs-config.js"
+
+pg() {
+	input=$1
+	output="$(basename $input .pdf).svg"
+	pcrop $input
+	inkscape $input --export-plain-svg=$output
+}
+
+crop_slides() {
+
+	# This is a helper function to crop the extra padding added to the slides
+	# when printed as a PDF in chrome. The numbers are tweaked for a 4x3
+	# aspect ration and the current margins. If these settings are changed
+	# then the numbers below will need to be adjusted.
+
+	 pdfcrop.exe --bbox "0 160 460 520" $1 $1
+}

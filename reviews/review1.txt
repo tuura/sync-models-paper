@@ -1,0 +1,49 @@
+============================================================================
+                            REVIEWER #1
+============================================================================
+
+
+---------------------------------------------------------------------------
+Reviewer's Scores
+---------------------------------------------------------------------------
+
+                 Originality & relevance: new
+                     Technical soundness: sound
+                      Relevance to ASYNC: highly relevant
+                            Presentation: good
+                     Reviewer confidence: expert
+                          Recommendation: weak accept
+
+
+---------------------------------------------------------------------------
+Summary
+---------------------------------------------------------------------------
+
+This paper presents a method for converting asynchronous circuits into a synchronous equivalent for the purposes of applying formal verification using commercial synchronous verifications tools.  The results demonstrate that while this is possible there is considerable cost in runtime.
+
+---------------------------------------------------------------------------
+Strengths
+---------------------------------------------------------------------------
+
+The idea of converting an asynchronous design into a form suitable for formal verification with synchronous tools opens the possibility of co-verification of mixed synchronous/asynchronous circuits using a single tool. It also gives asynchronous designers access to commercial formal verification tools.
+
+---------------------------------------------------------------------------
+Weaknesses
+---------------------------------------------------------------------------
+
+The cost of using synchronous verification tools in terms of runtime is very high limiting its practical application.  Asynchronous tools are very well tuned for the asynchronous verification problem, even if they are typically developed only academically.
+
+---------------------------------------------------------------------------
+Comments
+---------------------------------------------------------------------------
+
+The paper is essentially a negative result.  The authors demonstrate that using
+synchronous verification tools to verify asynchronous circuits is not very
+efficient.  A positive spin might still be made that it allows designers to use
+commercial tools that they are perhaps more familiar with.  However, the
+ability of this approach to scale for practical circuit size is a serious
+concern. That being said this is novel and useful result.
+
+The paper is mostly well written, but a careful copyedit should be done to find
+a few minor writing mistakes.  Such as, "to use case designs using", "First,
+would enable", "two verification tool", etc.

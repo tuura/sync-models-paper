@@ -1,0 +1,94 @@
+============================================================================
+                            REVIEWER #4
+============================================================================
+
+
+---------------------------------------------------------------------------
+Reviewer's Scores
+---------------------------------------------------------------------------
+
+                 Originality & relevance: incremental
+                     Technical soundness: sound
+                      Relevance to ASYNC: highly relevant
+                            Presentation: good
+                     Reviewer confidence: expert
+                          Recommendation: accept
+
+
+---------------------------------------------------------------------------
+Summary
+---------------------------------------------------------------------------
+
+The paper proposes verifying asynchronous and mixed sync/async circuits
+using standard formal verification tools for synchronous circuits.  The
+key idea is to construct a flip-flop "wrapper" around each asynchronous
+component. and "choice" inputs are used to model non-determinsm.
+
+---------------------------------------------------------------------------
+Strengths
+---------------------------------------------------------------------------
+
+Bridges from async design to standard tools.  Applies to mixed sync/async designs.
+
+---------------------------------------------------------------------------
+Weaknesses
+---------------------------------------------------------------------------
+
+The example are very typically async, including sync/async interfaces that look more like what an async designer would want them to be than what a sync designer in industry is likely to use.
+
+---------------------------------------------------------------------------
+Comments
+---------------------------------------------------------------------------
+
+The paper proposes verifying asynchronous and mixed sync/async circuits using
+standard formal verification tools for synchronous circuits.  The key idea is
+to construct a flip-flop "wrapper" around each asynchronous component.        Each
+flip-flop has its own enable.  Presumably, there is a corresponding enable for
+the synchronous components.  These enable signals are chosen
+non-deterministically by the FV tool.  The circuit is verified by showing that
+it satisfies its specification for all possible sequences of enable signals.
+
+The paper addresses an important issue: async circuits have much to offer for
+mixed-timing designs, but they do not fit well with standard design flows.
+Being able to verify async and mixed sync/async circuits with standard tools is
+an important contribution.
+
+The examples presented in the paper seem quite simple, and the first few (the
+S-Element of Figure 2 and the High Load Handshake of Figure 3) lack a clear
+motivation.  The paper provides citations, but a one or two sentence summary of
+the functionality/typical-use of each would make the paper easier to follow.
+The bus arbiter is a nice example that the method can be used for mixed
+sync/async designs.  I would like to see something closer to the interfaces
+that are typical in current designs.
+
+How hard would it be to extend the method to handle timing constraints?
+Typical clock-domain-crossing designs have some kind of state-machine on each
+side of the clock domain crossing, and these communicate using synchronizers.
+Async designs can be used in these interfaces, but the designer assumes that
+the synchronized signals satisfy the set-up and hold requirements of the
+synchronous design discipline.        They may assume that control signals propagate
+between domains with a bounded number of clock cycles of latency.  Many designs
+assume a particular relationship between the clock frequencies on the two sides
+of the interface: e.g. the receiver clock frequency is higher than that of the
+sender, or vice-versa.        It's not clear how the techniques presented in this
+paper would handle real-world timing requirements.  It would be good if the
+paper could address these issues.
+
+The idea of using "choice" signals to model non-determinism is not new.  It has
+become a common approach for verifying concurrent software.  See, for example,
+Qadeer & Rehof 2005 and Lan & Reps 2008.  Relevant prior work outside of the
+async community should be cited, and the current work should be clearly
+situated in this broader context.
+
+The review form asks how the results are supported: physical measurement,
+simulation, formal proof, or other.  I checked "other".  While this is a formal
+methods paper, the paper itself does not present formal proofs.  Instead, it
+gives a credible, intuitive explanation of why async circuits can be modeled
+using wrapper FFs and then verified using FV tools from the synchronous design
+world.        Comparisons are done running such tools and comparing the run-time with
+a tool developed specifically for async.  So, the validation is by experiments
+running tools, but they this isn't simulation per se.  Thus, I checked "other".
+
+Overall, the goals of the paper are quite noble.  The results seem to be at a
+somewhat early stage.  Of course, all research projects have to start
+somewhere.  This seems like a promising start.

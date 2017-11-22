@@ -1,0 +1,7 @@
+{
+	"LaTeX Error: (.*)": "red bold",
+	"^!(.*)": "red bold",
+	"LaTeX Warning: (.*)": "yellow",
+	".*BibTeX.*": "magenta",
+	"Done.": "green bold"
+}
